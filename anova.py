@@ -51,7 +51,12 @@ pg.print_table(aov)
 
 
 # Dataset must be expressed in long format for the pairwise t-tests:
-melted = pd.melt(data_post, id_vars=['Participant'], value_vars=["small_size","small_color","small_colorAndSize"], var_name='condition')
+melted = pd.melt(
+    data_post, 
+    id_vars=['Participant'], 
+    value_vars=["small_size","small_color","small_colorAndSize"], 
+    var_name='condition'
+)
 
 post_hocs = pg.pairwise_ttests(dv='value', within='condition', subject='Participant', data=melted)
 post_hocs.round(3)
